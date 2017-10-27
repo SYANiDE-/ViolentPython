@@ -25,6 +25,8 @@ DES:     ZUlEM0Qn0KMlQ
 MD5:     $1$E9f9WqDY$up3YDQYIDYtoaPAul6mj00
 sha256:  $5$E9f9WqDY$TdcW8Gm6/ERqnGrpHtSOociFRrpfrhJA9taKpxwMZl5
 sha512:  $6$E9f9WqDY$uhWjOkF5MAlGbRYWf4VshRGzZx03s2ZKmEOBYIChZa1KLLpvpyBScQI6x8jFqKTGt4Id8PD5xuKlFp7UriI0f1 
+  
+** examples using salt DES:'ZU', all others:'E9f9WqDY', password 'spank'
 """)
     sys.exit()
 
