@@ -36,7 +36,6 @@ def cx(h,u,p,exitOnSingle,exitOnHost, fails=0):
                 time.sleep(1)
                 cx(h,u,p,exitOnSingle,exitOnHost, fails)
         else:
-            print(str(e))
             pass
 
 
