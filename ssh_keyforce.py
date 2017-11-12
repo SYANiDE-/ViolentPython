@@ -16,7 +16,7 @@ There is supposedly a 2048-bit set of dss keys as well, floating around somewher
 """)
 
 
-maxConnections = 1
+maxConnections = 5
 connection_lock = threading.BoundedSemaphore(value=maxConnections)
 stop=False
 fails=0
