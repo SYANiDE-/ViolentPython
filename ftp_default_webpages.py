@@ -20,6 +20,10 @@ def searchDefault(ftpobj):
                 retlist.append(f)
     return retlist
 
+arglen = len(sys.argv)
+if not arglen == 3:
+    print("Error!   Need args host(1) and user(2)")
+    sys.exit()
 host = sys.argv[1]
 user = sys.argv[2]
 passwd = getpass.getpass()
