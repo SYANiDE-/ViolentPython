@@ -5,7 +5,7 @@ import pygeoip, sys
 geo = pygeoip.GeoIP('/opt/GeoIP/Geo.dat')
 def q(targ):
     r = geo.record_by_name(targ)
-    # print(str(r))
+    print(str(r))
     print("[+] Target: %s : %s : %s: lat:%s lon:%s" % (targ, str(r['metro_code']), str(r['country_name']), str(r['latitude']), str(r['longitude'])))
 
 
