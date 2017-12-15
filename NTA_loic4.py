@@ -2,7 +2,7 @@
 import dpkt, socket, sys
 
 
-THRESH = 10000
+THRESH = 20
 
 def search(pcap):
     for (ts, buf) in pcap:
@@ -40,7 +40,7 @@ def searchForHive(pcap):
                 print("[!] Hivemind DDoS detected!")
                 print("[+] %s %s CMD %s %s: %s" % (str(src+ ":" +str(sport)), s, d, str(dst+ ":" +str(dport)), tcp.data))
         except Exception, X:
-            # print(str(X))
+            print(str(X))
             pass
 
 
@@ -76,12 +76,8 @@ def main():
         print("USAGE: %s %s" % (sys.argv[0], "[pcap file]"))
         sys.exit()
     else:
-        f = open(sys.argv[1], 'r')
-        pcap = dpkt.pcap.Reader(f)
-        search(pcap)
-        searchForHive(pcap)
-        searchForAttack(pcap)
-        f.close()
+        for x in [search, searchForHive, searchForAttack]:
+            x(dpkt.pcap.Reader(open(sys.argv[1])))
 
 
 if __name__=="__main__":
