@@ -2,10 +2,31 @@
 from scapy.all import *
 import argparse, sys, re
 
+helptxt = {}
+helptxt['pkt.sprintf("%Raw.load%")'] = """
+Ctrl chars are not evaluated
+
+'POST /lol.txt HTTP/1.1\r\nHost: 127.0.0.1\r\nUser-Agent: curl/7.57.0\r\nAccept: */*\r\nContent-Length: 22\r\nContent-Type: application/x-www-form-urlencoded\r\n\r\nthis=abra&that=cadavre'
+"""
+helptxt['pkt.getlayer(Raw)'] = """
+Ctrl chars are evaluated
+
+POST /lol.txt HTTP/1.1
+Host: 127.0.0.1
+User-Agent: curl/7.57.0
+Accept: */*
+Content-Length: 22
+Content-Type: application/x-www-form-urlencoded
+
+this=abra&that=cadavre
+"""
+
 
 def Analyze(pkt):
-    # pload = pkt.sprintf("%Raw.load%") # glob non-translated, ?? when no data
-    pload = pkt.getlayer(Raw)# glob translated, NoneType when no data
+    # there are two different methods for assigning the raw data.
+    # The method chosen determines the output format (see help)
+    pload = pkt.sprintf("%Raw.load%")
+    # pload = pkt.getlayer(Raw)
     if pload != '??' and pload != None:
         print("%s" % pload)
 
