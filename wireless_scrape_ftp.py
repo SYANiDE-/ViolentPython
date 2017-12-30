@@ -8,9 +8,8 @@ def Analyze(pkt):
     pload = pkt.sprintf("%Raw.load%")
     user = re.findall('(?i)USER (.*)\\\\r', pload)
     passwd = re.findall('(?i)PASS (.*)\\\\r', pload)
-    if dest:
-        print("[+] DestIP: %s" % dest)
     if user:
+        print("[+] DestIP: %s" % dest)
         print("[+] USER: %s" % user)
     if passwd:
         print("[+] PASS: %s" % passwd)
