@@ -3,7 +3,6 @@ import re, argparse, sys
 from scapy.all import *
 
 ## Cannot emphasize enough... !!! FOR EDUCATIONAL PURPOSES ONLY !!!
-## Fuck you specifically if you use this for illegal activity.  I hereby denounce you and hope you get riggety wrecked, skid!
 
 Notes = """\
 According to http://www.regular-expressions.info/creditcard.html :
