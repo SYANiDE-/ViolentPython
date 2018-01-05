@@ -12,17 +12,6 @@ def detect():
             print("[%s] Detected: %s : \"%s\"" % (datetime.datetime.now(), str(mac), str(name)))
 
 
-def getargs():
-    ap = argparse.ArgumentParser(description="Detect bluetooth devices")
-    ap.add_argument('-i', '--iface', type=str, default=None, help="Interface to packet capture on")
-    args, l = ap.parse_known_args()
-    if args.iface == None:
-        ap.print_help()
-        sys.exit()
-    else:
-        return args
-
-
 def main():
     while True:
         detect()
