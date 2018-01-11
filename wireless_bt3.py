@@ -9,12 +9,12 @@ foundtargs = []
 
 def detect(targ):
     for (mac, name) in discover_devices(lookup_names=True):
-        if mac not in devlist:
-            devlist.append(mac)
-            print("[%s] Detected: %s : \"%s\"" % (datetime.datetime.now(), str(mac), str(name)))
-        if targ.lower() in name.lower() and targ not in foundtargs:
-            foundtargs.append(targ)
-            print("[%s] Found target device \"%s\":  %s : \"%s\"" % (datetime.datetime.now(), str(targ), str(mac), str(name)))
+        if mac.upper() not in devlist:
+            devlist.append(mac.upper())
+            print("[%s] Detected: %s : \"%s\"" % (datetime.datetime.now(), str(mac.upper()), str(name)))
+        if targ.upper() in mac.upper() and targ.upper() not in foundtargs:
+            foundtargs.append(targ.upper())
+            print("[%s] Found target device \"%s\":  %s : \"%s\"" % (datetime.datetime.now(), str(targ.upper()), str(mac.upper()), str(name)))
 
 
 
