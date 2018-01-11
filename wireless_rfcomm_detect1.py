@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-import bluetooth
+import bluetooth, sys, argparse
 
 
 def detect_rfcomm(**kw):
@@ -12,10 +12,22 @@ def detect_rfcomm(**kw):
     finally:
         sock.close()
 
+def getargs():
+    ap = argparse.ArgumentParser(description="BT RFCOMM scanner")
+    ap.add_argument("-m", '--mac', type=str, default=None, help="MAC address")
+    args, l = ap.parse_known_args()
+    if args.mac == None:
+        ap.print_help()
+        sys.exit()
+    else:
+        return args
+
 
 def main():
     kw = {}
-    kw['mac'] = '10:F1:F2:F0:85:BB'
+    args = getargs()
+    # kw['mac'] = '10:F1:F2:FF:FF:FF'  # nulling last three bytes for Github upload
+    kw['mac'] = args.mac
     for port in range(1,30):
         kw['port'] = port
         detect_rfcomm(**kw)
@@ -23,3 +35,4 @@ def main():
 
 if __name__=="__main__":
     main()
+
