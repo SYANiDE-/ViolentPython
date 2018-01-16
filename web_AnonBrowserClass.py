@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-import mechanize, cookielib, random, datetime, argparse, sys
+import mechanize, cookielib, random, datetime, argparse, sys, pygeoip
 
 
 class anonBrowser(mechanize.Browser):
@@ -32,6 +32,13 @@ class anonBrowser(mechanize.Browser):
         src = pg.read().split("\n")
         return src
 
+
+    def query_geo(s, targ):
+        geo = pygeoip.GeoIP('/opt/GeoIP/Geo.dat')
+        r = geo.record_by_name(targ)
+        print("[%s] Proxy %s geo: %s : %s: lat:%s lon:%s" % (datetime.datetime.now(), targ, str(r['metro_code']), str(r['country_name']), str(r['latitude']), str(r['longitude'])))
+
+
     def ANON_VARS(s):
         print(s.proxies)
         print(s.user_agents)
@@ -39,7 +46,6 @@ class anonBrowser(mechanize.Browser):
         print("[%s] # User-agents: %s" %  (datetime.datetime.now(), len(s.user_agents)))
 
         
-
     def debug(s, val):
         if val == True:
             s.DEBUG=1
@@ -53,11 +59,13 @@ class anonBrowser(mechanize.Browser):
         if s.DEBUG == 1:
             print("[%s] Cleared cookies" % datetime.datetime.now())
 
+
     def change_user_agent(s):
         index = random.randrange(0, len(s.user_agents))
         s.add_headers = [('User-agent', (s.user_agents[index]))]
         if s.DEBUG == 1:
             print("[%s] %s" % (datetime.datetime.now(), [('User-agent', (s.user_agents[index]))]))
+
 
     def change_proxy(s):
         if s.proxies:
@@ -65,6 +73,7 @@ class anonBrowser(mechanize.Browser):
             s.set_proxies({'http' : s.proxies[index]})
             if s.DEBUG == 1:
                 print("[%s] using proxy: %s" % (datetime.datetime.now(), {'http' : s.proxies[index]}))
+                s.query_geo(s.proxies[index].split(':')[0])
 
 
     def anonymize(s, sleep=False, sleepintvl=60):
@@ -80,6 +89,7 @@ class anonBrowser(mechanize.Browser):
 def main():
     # anonBrowser()
     pass
+
 
 if __name__=="__main__":
     main()
