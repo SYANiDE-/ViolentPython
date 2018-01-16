@@ -1,6 +1,10 @@
 #!/usr/bin/env python2
 import mechanize, sys, datetime, argparse
 
+# http://whatismyip.host/ipv4
+# AKA ip4.host AKA ip6.host AKA ipip.host AKA ip.pizza
+# http://spys.me/proxy.txt  for proxy list
+
 
 def get_source(url, proxy={}):
     try:

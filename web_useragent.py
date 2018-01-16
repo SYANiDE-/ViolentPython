@@ -5,6 +5,7 @@ import mechanize, sys, datetime, argparse
 # http://www.useragentstring.com/pages/useragentstring.php for a list of valid user agent strings
 # Fake a real user agent of different OS:
 # Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.2.3pre) Gecko/20100403 Lorentz/3.6.3plugin2pre (.NET CLR 4.0.20506)
+# Also:  https://gist.githubusercontent.com/ruXlab/25d711c275f220fc5a425b64afeb34f7/raw/d5ec259612e4749ae5adecabc29cd2dc8481901e/useragents.txt
 
 def get_source(url, useragent=[('User-agent', "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b4pre) Gecko/20100815 Minefield/4.0b4pre")], proxy={}):
     try:
